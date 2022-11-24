@@ -1,0 +1,25 @@
+version: "3"
+services:
+  fastapi:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - TZ=Asia/Taipei
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=test
+      - LANG=C.UTF-8
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - mysql-config:/etc/mysql
+
+volumes:
+  mysql-data:
+    driver: local
+  mysql-config:
+    driver: local
